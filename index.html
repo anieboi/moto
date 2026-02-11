@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sakura Journey | By Anish</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Pacifico&family=Montserrat:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-gradient: linear-gradient(135deg, #fff0f5 0%, #ffe4e1 50%, #ffc1cc 100%);
+            --sakura-pink: #ffb7c5;
+            --accent-pink: #ff8fa3;
+            --deep-pink: #ff4d6d;
+            --glass: rgba(255, 255, 255, 0.4);
+            --glass-border: rgba(255, 255, 255, 0.6);
+        }
+
+        * {
+            box-sizing: border-box;
+            cursor: default;
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Montserrat', sans-serif;
+            background: var(--bg-gradient);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- PARALLAX SAKURA --- */
+        .sakura-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .petal {
+            position: absolute;
+            background-color: var(--sakura-pink);
+            border-radius: 150% 0 150% 0;
+            opacity: 0.8;
+            filter: drop-shadow(0 0 5px rgba(255,183,197,0.4));
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { transform: translateY(-10vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(110vh) translateX(100px) rotate(720deg); opacity: 0; }
+        }
+
+        /* --- PROFESSIONAL UI COMPONENTS --- */
+        .page {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            padding: 20px;
+        }
+
+        .active { 
+            display: flex; 
+            animation: slideUpFade 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+        }
+
+        @keyframes slideUpFade {
+            from { transform: translateY(30px); opacity: 0; filter: blur(10px); }
+            to { transform: translateY(0); opacity: 1; filter: blur(0); }
+        }
+
+        /* GLASS BOX STYLE */
+        .glass-card {
+            background: var(--glass);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 60px;
+            border-radius: 40px;
+            box-shadow: 0 25px 50px -12px rgba(255, 77, 109, 0.15);
+            width: 100%;
+            max-width: 550px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+        }
+
+        /* MODERN INPUT */
+        .search-wrapper {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            border-radius: 20px;
+            font-size: 1.1rem;
+            outline: none;
+            color: var(--deep-pink);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            background: #fff;
+            box-shadow: 0 0 0 4px rgba(255, 143, 163, 0.3);
+        }
+
+        /* DANCING TEXT ENHANCED */
+        .dancing-container {
+            font-family: 'Dancing Script', cursive;
+            font-size: 5rem;
+            color: var(--deep-pink);
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .letter {
+            display: inline-block;
+            animation: bounce 1s infinite alternate cubic-bezier(0.45, 0, 0.55, 1);
+        }
+
+        @keyframes bounce {
+            from { transform: translateY(0) rotate(-2deg); }
+            to { transform: translateY(-25px) rotate(2deg); }
+        }
+
+        /* FINAL VIEWPORT */
+        .final-font {
+            font-family: 'Pacifico', cursive;
+            font-size: 6rem;
+            color: white;
+            text-shadow: 0 10px 30px rgba(255, 77, 109, 0.5);
+            animation: breathe 3s infinite ease-in-out;
+        }
+
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px #fff); }
+            50% { transform: scale(1.05); filter: drop-shadow(0 0 30px var(--accent-pink)); }
+        }
+
+        /* BUTTONS */
+        .btn {
+            padding: 18px 45px;
+            border: none;
+            border-radius: 18px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            text-transform: uppercase;
+        }
+
+        .btn-yes { background: var(--deep-pink); color: white; }
+        .btn-yes:hover { background: #ff1a43; transform: scale(1.05); box-shadow: 0 15px 30px rgba(255, 77, 109, 0.4); }
+
+        .btn-no { background: transparent; color: var(--deep-pink); border: 2px solid var(--deep-pink); }
+        .btn-no:hover { background: rgba(255, 77, 109, 0.05); }
+
+        /* WATERMARK */
+        .watermark {
+            position: fixed;
+            bottom: 25px;
+            right: 30px;
+            font-size: 0.75rem;
+            color: var(--deep-pink);
+            opacity: 0.6;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        /* CUSTOM CURSOR GLOW */
+        #cursor-glow {
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,183,197,0.3) 0%, rgba(255,183,197,0) 70%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+            transform: translate(-50%, -50%);
+        }
+    </style>
+</head>
+<body>
+
+<div id="cursor-glow"></div>
+<div class="sakura-container" id="sakuraBody"></div>
+<div class="watermark">Designed by Anish</div>
+
+<div id="p1" class="page active">
+    <div class="glass-card">
+        <h2 style="color: var(--deep-pink); font-weight: 300; letter-spacing: 5px; margin-bottom: 10px;">BROWSER</h2>
+        <div class="search-wrapper">
+            <input type="text" id="userInput" class="search-input" placeholder="Type your intention...">
+        </div>
+        <p style="color: var(--accent-pink); font-size: 0.9rem;">To proceed, type <strong>"I can do it"</strong></p>
+        <button class="btn btn-yes" style="margin-top: 30px;" onclick="checkInput()">Search Intent</button>
+    </div>
+</div>
+
+<div id="p2" class="page">
+    <div class="dancing-container" id="dancingText"></div>
+    <p style="color: var(--deep-pink); font-weight: 300; margin-bottom: 40px; letter-spacing: 1px;">Every challenge is an opportunity to bloom.</p>
+    <div style="display: flex; gap: 20px;">
+        <button class="btn btn-yes" onclick="showPage(3)">I can do it</button>
+        <button class="btn btn-no" onclick="alert('Challenge your limits. Click the first button.')">I can't do it</button>
+    </div>
+</div>
+
+<div id="p3" class="page">
+    <div class="final-font">God is with you</div>
+    <div style="width: 50px; height: 2px; background: white; margin: 30px 0; opacity: 0.5;"></div>
+    <p style="color: white; font-weight: 300; letter-spacing: 4px; text-shadow: 0 2px 4px rgba(0,0,0,0.1);">ENDLESS POSSIBILITY</p>
+</div>
+
+<script>
+    // 1. Cursor Glow Follow
+    const glow = document.getElementById('cursor-glow');
+    window.addEventListener('mousemove', (e) => {
+        glow.style.left = e.clientX + 'px';
+        glow.style.top = e.clientY + 'px';
+    });
+
+    // 2. Advanced Sakura Physics
+    const container = document.getElementById('sakuraBody');
+    function createPetal() {
+        const p = document.createElement('div');
+        p.className = 'petal';
+        const size = Math.random() * 15 + 10;
+        const depth = Math.random(); // 0 to 1 for parallax
+        
+        p.style.width = size + 'px';
+        p.style.height = (size * 1.2) + 'px';
+        p.style.left = Math.random() * 100 + 'vw';
+        
+        // Speed and Blur based on depth
+        p.style.animationDuration = (5 + (depth * 5)) + 's';
+        p.style.filter = `blur(${depth * 2}px)`;
+        p.style.zIndex = depth > 0.5 ? 6 : 1; 
+
+        container.appendChild(p);
+        setTimeout(() => p.remove(), 10000);
+    }
+    setInterval(createPetal, 300);
+
+    // 3. Logic
+    function checkInput() {
+        const val = document.getElementById('userInput').value.toLowerCase().trim();
+        if (val === "i can do it") {
+            showPage(2);
+            startDancing();
+        } else {
+            alert("Focus on the words: I can do it");
+        }
+    }
+
+    function showPage(num) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        setTimeout(() => {
+            document.getElementById('p' + num).classList.add('active');
+        }, 50);
+    }
+
+    function startDancing() {
+        const text = "Unstoppable";
+        const target = document.getElementById('dancingText');
+        target.innerHTML = '';
+        text.split('').forEach((char, i) => {
+            let span = document.createElement('span');
+            span.innerText = char;
+            span.className = 'letter';
+            span.style.animationDelay = (i * 0.1) + 's';
+            target.appendChild(span);
+        });
+    }
+</script>
+
+</body>
+</html>
